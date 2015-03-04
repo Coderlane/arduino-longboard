@@ -25,6 +25,6 @@ public:
            int new_max = THROTTLE_DEFAULT_MAX);
 
   int Read();
-}
+};
 
 #endif /* THROTTLE_H */
