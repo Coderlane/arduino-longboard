@@ -8,6 +8,8 @@
 
 #include "Throttle.h"
 
+extern int analogRead(int pin);
+
 /**
  * @brief Creates a new throttle.
  *
@@ -43,6 +45,6 @@ int Throttle::Read()
 		return 100;
 	}
 
-	val -= new_min; // Shift downward
+	val -= min; // Shift downward
 	return val / range; // Compute result
 }
