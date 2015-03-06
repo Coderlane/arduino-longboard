@@ -32,7 +32,7 @@ Throttle::Throttle(int new_pin, int new_min, int new_max)
  */
 int Throttle::read()
 {
-  int val = analogread(pin);
+  int val = analogRead(pin);
 
   if(val <= min) {
     // Low range;
