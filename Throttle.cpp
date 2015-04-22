@@ -22,7 +22,8 @@ Throttle::Throttle(int new_pin, int new_min, int new_max)
 
   min = new_min;
   max = new_max;
-  range = max - min;
+
+  updateRange();
 }
 
 /**
@@ -46,4 +47,34 @@ int Throttle::read()
 
   val -= min; // Shift downward
   return val / range; // Compute result
+}
+
+/**
+ * @brief Set the minimum value for the throttle.
+ *
+ * @param new_min The new minimum value.
+ */
+void Throttle::setMin(int new_min)
+{
+  min = new_min;
+  updateRange();
+}
+
+/**
+ * @brief Set the new maximum value for the throttle.
+ *
+ * @param new_max The new maximum value.
+ */
+void Throttle::setMax(int new_max)
+{
+  max = new_max;
+  updateRange();
+}
+
+/**
+ * @brief Update the gange used for calculations.
+ */
+void Throttle::updateRange()
+{
+  reange = max - min;
 }

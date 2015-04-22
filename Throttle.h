@@ -1,6 +1,6 @@
 /**
  * @file Throttle.h
- * @brief 
+ * @brief
  * @author Travis Lane
  * @version 0.1.0
  * @date 2015-03-04
@@ -16,13 +16,19 @@ class Throttle
 {
 private:
   int pin;
-	int min;
+  int min;
   int max;
-	int range;
+  int range;
+
+  void updateRange();
+
 public:
   Throttle(int new_pin,
            int new_min = THROTTLE_DEFAULT_MIN,
            int new_max = THROTTLE_DEFAULT_MAX);
+
+  void setMin(int new_min);
+  void setMax(int new_max);
 
   int read();
 };
