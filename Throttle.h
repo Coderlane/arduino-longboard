@@ -24,7 +24,7 @@ public:
            int new_min = THROTTLE_DEFAULT_MIN,
            int new_max = THROTTLE_DEFAULT_MAX);
 
-  int read();
+  float read();
 };
 
 #endif /* THROTTLE_H */
