@@ -72,9 +72,9 @@ void Throttle::setMax(int new_max)
 }
 
 /**
- * @brief Update the gange used for calculations.
+ * @brief Update the range used for calculations.
  */
 void Throttle::updateRange()
 {
-  reange = max - min;
+  range = max - min;
 }
