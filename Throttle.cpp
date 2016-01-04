@@ -22,8 +22,6 @@ Throttle::Throttle(int new_pin, int new_min, int new_max)
 
   min = new_min;
   max = new_max;
-
-  updateRange();
 }
 
 /**
@@ -31,22 +29,11 @@ Throttle::Throttle(int new_pin, int new_min, int new_max)
  *
  * @return A percentage. 0 to 100 as an integer.
  */
-float Throttle::read()
+int Throttle::read()
 {
   int val = analogRead(pin);
-  
-  if(val <= min) {
-    // Low range;
-    return 0.0f;
-  }
 
-  if(val >= max) {
-    // High range
-    return 100.0f;
-  }
-
-  val = val - min; // Shift downward
-  return ((float)val / (float)range) * 100.0f; // Compute result
+  return map(val, min, max, 0, 100);
 }
 
 /**
@@ -57,7 +44,6 @@ float Throttle::read()
 void Throttle::setMin(int new_min)
 {
   min = new_min;
-  updateRange();
 }
 
 /**
@@ -68,13 +54,4 @@ void Throttle::setMin(int new_min)
 void Throttle::setMax(int new_max)
 {
   max = new_max;
-  updateRange();
-}
-
-/**
- * @brief Update the range used for calculations.
- */
-void Throttle::updateRange()
-{
-  range = max - min;
 }

@@ -18,9 +18,6 @@ private:
   int pin;
   int min;
   int max;
-  int range;
-
-  void updateRange();
 
 public:
   Throttle(int new_pin,
@@ -30,7 +27,7 @@ public:
   void setMin(int new_min);
   void setMax(int new_max);
 
-  float read();
+  int read();
 };
 
 #endif /* THROTTLE_H */
