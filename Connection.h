@@ -6,7 +6,7 @@
  * @date 2016-01-05
  */
 
-#include <Bluetooth.h>
+#include "Bluetooth.h"
 
 enum ConnectionStatus { CONN_UP, CONN_DOWN};
 

@@ -6,8 +6,7 @@
  * @date 2016-01-05
  */
 
-#include <Connection.h>
-#include <errno.h>
+#include "Connection.h"
 
 Connection::Connection(Bluetooth &new_bt) : bt(new_bt)
 {
