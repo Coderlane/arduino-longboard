@@ -8,89 +8,51 @@
 
 #include "Connection.h"
 
-Connection::Connection(Bluetooth &new_bt) : bt(new_bt)
+Connection::Connection(Bluetooth &new_bt, int id) : bt(new_bt)
 {
+  this->id = id;
 }
 
 int Connection::write(int percent)
 {
-  char buff[4];
-  char *c = buff;
   int rc = 0;
+  StaticJsonBuffer<200> buffer;
+  JsonObject& object = buffer.createObject();
 
   if (!bt.connected()) {
-    rc = -1;
-    goto out;
+    return -1;
   }
 
-  rc = percent_to_str(percent, buff);
-  if (rc != 0)
-    goto out;
+  object["id"] = this->id;
+  object["throttle"] = percent;
 
-  bt.write((uint8_t *)buff, sizeof(buff));
-
-out:
+  rc = object.printTo(bt);
   return rc;
 }
 
 int Connection::read(int *out_percent)
 {
-  char buff[4];
-  char c;
-  int rc = 0, len = 0;
+  int rc = 0;
+  char buff[200];
+  StaticJsonBuffer<200> buffer;
 
   if (!bt.connected()) {
-    rc = -1;
-    goto out;
+    return -1;
   }
 
-  if (bt.available() < 4) {
-    rc = -2;
-    goto out;
+  rc = bt.readBytesUntil('\0', buff, sizeof(buff));
+
+  JsonObject& object = buffer.parseObject(buff);
+
+  if (!object.success()) {
+    return -1;
   }
 
-  for (int i = 0; i < 4; i++) {
-    buff[i] = bt.read();
-    if (buff[i] == '\n' && i != 3) {
-      rc = -3;
-      goto out;
-    }
+  if (object["id"] != id) {
+    /* The ID doesn't match... We should ignore this message */
+    return -1;
   }
 
-  rc = str_to_percent(buff, out_percent);
-out:
+  *out_percent = object["throttle"];
   return rc;
-}
-
-int Connection::percent_to_str(int percent, char *out_str)
-{
-  int hundreds, tens, ones;
-  if (percent < 0 || percent > 100) {
-    out_str[0] = '\0';
-    return -1;
-  }
-
-  hundreds = percent / 100;
-  tens = (percent - (hundreds * 100)) / 10;
-  ones = percent - (tens * 10);
-
-  out_str[0] = '0' + hundreds;
-  out_str[1] = '0' + tens;
-  out_str[2] = '0' + ones;
-  out_str[3] = '\n';
-  return 0;
-}
-
-int Connection::str_to_percent(char *str, int *out_percent)
-{
-  int percent = 0;
-
-  percent += (str[0] - '0') * 100;
-  percent += (str[1] - '0') * 10;
-  percent += (str[2] - '0');
-
-  if (percent > 100 || percent < 0)
-    return -1;
-
-  return percent;
 }

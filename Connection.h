@@ -8,18 +8,18 @@
 
 #include "Bluetooth.h"
 
+#include <ArduinoJson.h>
+
 enum ConnectionStatus { CONN_UP, CONN_DOWN};
 
 class Connection {
 public:
-  Connection(Bluetooth &new_bt);
+  Connection(Bluetooth &new_bt, int id);
 
   int write(int percent);
   int read(int *out_percent);
 
 private:
+  int id;
   Bluetooth &bt;
-
-  static int percent_to_str(int percent, char *out_str);
-  static int str_to_percent(char *str, int *out_percent);
 };
