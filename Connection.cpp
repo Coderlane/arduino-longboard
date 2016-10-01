@@ -26,7 +26,10 @@ int Connection::write(int percent)
   object["id"] = this->id;
   object["throttle"] = percent;
 
+  /* Don't pretty print, I deliminate on \n */
   rc = object.printTo(bt);
+  bt.write('\n');
+
   return rc;
 }
 
@@ -40,7 +43,13 @@ int Connection::read(int *out_percent)
     return -1;
   }
 
-  rc = bt.readBytesUntil('\0', buff, sizeof(buff));
+  rc = bt.readBytesUntil('\n', buff, sizeof(buff));
+  if (rc <= 0) {
+    return -1;
+  }
+
+  /* Set last char to NULL */
+  buff[rc] = '\0';
 
   JsonObject& object = buffer.parseObject(buff);
 
