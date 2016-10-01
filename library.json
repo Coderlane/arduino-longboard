@@ -1,0 +1,21 @@
+{
+  "name": "arduino-longboard",
+  "keywords": "",
+  "description": "Arduino library for building an arduino powered longboard",
+  "dependencies":
+  [
+    {
+      "name": "arduino-bluetooth",
+      "authors": "Travis Lane",
+      "frameworks": "arduino"
+    },
+    {
+      "name": "ArduinoJson",
+      "authors": "Benoit Blanchon",
+      "frameworks": "arduino"
+    }
+  ],
+  "version": "0.1.0",
+  "frameworks": "arduino",
+  "platforms": "*"
+}
