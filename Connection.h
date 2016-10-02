@@ -6,6 +6,9 @@
  * @date 2016-01-05
  */
 
+#ifndef CONNECTION_H
+#define CONNECTION_H
+
 #include "Bluetooth.h"
 
 #include <ArduinoJson.h>
@@ -23,3 +26,5 @@ private:
   int id;
   Bluetooth &bt;
 };
+
+#endif /* CONNECTION_H */
