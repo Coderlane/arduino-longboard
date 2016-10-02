@@ -2,6 +2,14 @@
   "name": "arduino-longboard",
   "keywords": "",
   "description": "Arduino library for building an arduino powered longboard",
+  "authors": [
+    {
+      "name": "Travis Lane",
+      "email": "coderlane@gmail.com",
+      "url": "http://coderlane.com",
+      "maintainer": true
+    }
+  ],
   "dependencies":
   [
     {
@@ -15,6 +23,12 @@
       "frameworks": "arduino"
     }
   ],
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/coderlane/arduino-longboard"
+  },
+  "downloadUrl": "https://github.com/Coderlane/arduino-longboard/archive/master.zip",
   "version": "0.1.0",
   "frameworks": "arduino",
   "platforms": "*"
