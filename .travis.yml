@@ -9,9 +9,11 @@ cache:
 
 env:
   - PLATFORMIO_CI_SRC=examples/ExampleThrottle
+  - PLATFORMIO_CI_SRC=tests/TestConnection
 
 install:
   - pip install -U platformio
+  - platformio lib install ArduinoUnit
   - platformio lib install ArduinoJson
   - platformio lib install https://github.com/Coderlane/arduino-bluetooth/archive/master.zip
 
