@@ -45,7 +45,7 @@ int Connection::read(int *out_percent)
 
   rc = bt.readBytesUntil('\n', buff, sizeof(buff));
   if (rc <= 0) {
-    return -1;
+    return -2;
   }
 
   /* Set last char to NULL */
@@ -54,12 +54,12 @@ int Connection::read(int *out_percent)
   JsonObject& object = buffer.parseObject(buff);
 
   if (!object.success()) {
-    return -1;
+    return -3;
   }
 
   if (object["id"] != id) {
     /* The ID doesn't match... We should ignore this message */
-    return -1;
+    return -4;
   }
 
   *out_percent = object["throttle"];
