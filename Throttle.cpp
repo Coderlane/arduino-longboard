@@ -31,9 +31,19 @@ Throttle::Throttle(int new_pin, int new_min, int new_max)
  */
 int Throttle::read()
 {
+  int out;
   int val = analogRead(pin);
 
-  return map(val, min, max, 0, 100);
+  out = map(val, min, max, 0, 100);
+
+  // Normalize the values
+  if (out > 100) {
+    out = 100;
+  } else if (out < 0) {
+    out = 0;
+  }
+
+  return out;
 }
 
 /**

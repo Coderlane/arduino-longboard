@@ -1,6 +1,6 @@
 /**
  * @file Throttle.h
- * @brief 
+ * @brief
  * @author Travis Lane
  * @version 0.1.0
  * @date 2015-03-04
