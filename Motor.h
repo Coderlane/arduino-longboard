@@ -9,11 +9,15 @@
 #ifndef MOTOR_H
 #define MOTOR_H
 
+#include <Servo.h>
+
 class Motor
 {
 protected:
+  Servo esc;
   int pin;
-  int mppm;
+  int macc;
+  int mdec;
 
   // Timing
   long last_millis = 0;
@@ -29,10 +33,13 @@ protected:
   int next_percent(long milli);
 
 public:
-  Motor(int pin, float mppm = 0.02f);
+  Motor(int pin, int macc, int mdec);
   void setup();
+  void setup_millis(long cur_millis);
 
   void process();
+  void process_millis(long cur_millis);
+
   void request(int percent);
   int get_percent();
 };
