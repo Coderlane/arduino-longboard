@@ -13,6 +13,7 @@ cache:
 env:
   - PLATFORMIO_CI_SRC=examples/ExampleThrottle
   - PLATFORMIO_CI_SRC=tests/TestConnection
+  - PLATFORMIO_CI_SRC=tests/TestMotor
 
 install:
   - pip install -U platformio
