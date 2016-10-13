@@ -18,6 +18,7 @@ install:
   - pip install -U platformio
   - platformio lib install ArduinoUnit
   - platformio lib install ArduinoJson
+  - platformio lib install 883 # Servo
   - platformio lib install https://github.com/Coderlane/arduino-bluetooth/archive/master.zip
 
 script:

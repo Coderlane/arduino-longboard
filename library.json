@@ -21,6 +21,11 @@
       "name": "ArduinoJson",
       "authors": "Benoit Blanchon",
       "frameworks": "arduino"
+    },
+    {
+      "name": "Servo",
+      "authors": "Michael Margolis, Arduino",
+      "frameworks": "arduino"
     }
   ],
   "repository":

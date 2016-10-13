@@ -8,7 +8,7 @@ long cur_millis = 0;
 long prev_millis = 0;
 long interval_millis = 1000;
 
-Motor motor(motor_pin);
+Motor motor(motor_pin, 5, 6);
 
 void setup()
 {
