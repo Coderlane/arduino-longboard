@@ -1,2 +1,2 @@
-Throttle KEYWORD1
-read KEYWORD2
+Throttle	KEYWORD1
+read	KEYWORD2
